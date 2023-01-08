@@ -5,13 +5,13 @@ const form = document.querySelector(`.form`);
 
 let delay = + firstStep.value;
 
-function createPromise({position, delay}) {
+function createPromise() {
   const promise = new Promise((resolve, reject) => {
     const shouldResolve = Math.random() > 0.3;
     if (shouldResolve) {
-      resolve({ position, delay });
+      resolve();
     } else {
-      reject({ position, delay });
+      reject();
     }
  } )
   return promise;
@@ -19,13 +19,14 @@ function createPromise({position, delay}) {
 
 form.addEventListener("submit", e => {
   e.preventDefault();
-  for(let i = 1; i < amount.value + 1; i++){
-    setTimeout(createPromise({i, delay})
-    .then(({ i, delay }) => {
-      console.log(`✅ Fulfilled promise ${i} in ${delay}ms`);
+  for(let i = 0; i < amount.value; i++){
+    let position = i;
+    setTimeout(createPromise()
+    .then(() => {
+      console.log.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
     })
-    .catch(({ i, delay }) => {
-      console.log(`❌ Rejected promise ${i} in ${delay}ms`);
+    .catch(() => {
+      console.log.failure(`❌ Rejected promise ${position} in ${delay}ms`);
     }),
     delay = delay + + step. value)
     }

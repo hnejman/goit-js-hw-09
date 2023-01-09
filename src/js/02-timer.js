@@ -1,7 +1,12 @@
 import flatpickr from "flatpickr";
 import "flatpickr/dist/flatpickr.min.css";
-
-const selector = document.querySelector('[id="datetime-picker"]')
+import throttle from "lodash.throttle";
+const selector = document.querySelector('[id="datetime-picker"]');
+const seconds = document.querySelector('[data-seconds]');
+const minutes = document.querySelector('[data-minutes]');
+const hours = document.querySelector('[data-hours]');
+const days = document.querySelector('[data-days]');
+const btn = document.querySelector('[data-start]');
 
 const options = {
     enableTime: true,
@@ -13,6 +18,21 @@ const options = {
     },
   };
 
-  flatpickr(selector, options);
+let pickr = flatpickr('[id="datetime-picker"]', options);
 
-const dataSet = selector.textContent;
+function setTime(comparator, seconds, minutes, hours, days){
+  let date = new Date();
+  date = date.getTime();
+  const result = comparator - date;
+  seconds.textContent = Math.floor((result % 60000 )/ 1000 ).toFixed(0);
+  minutes.textContent = Math.floor((result % 3600000 )/ 60000).toFixed(0);
+  hours.textContent = Math.floor((result % 86400000) / 3600000).toFixed(0);
+  days.textContent = Math.floor(result / 86400000).toFixed(0);
+}
+
+btn.addEventListener("click", e=>{
+  let dataSet = pickr.selectedDates[0];
+  dataSet = dataSet.getTime();
+  console.log(dataSet);
+  setInterval(setTime, 1000, dataSet, seconds, minutes, hours, days);
+})

@@ -2,8 +2,8 @@ const firstStep = document.querySelector(`[name="delay"]`);
 const step = document.querySelector(`[name="step"]`);
 const amount = document.querySelector(`[name="amount"]`);
 const form = document.querySelector(`.form`);
-
-let delay = + firstStep.value;
+let delay = 0;
+delay = + firstStep.value;
 
 function createPromise() {
   const promise = new Promise((resolve, reject) => {
@@ -23,10 +23,10 @@ form.addEventListener("submit", e => {
     let position = i;
     setTimeout(createPromise()
     .then(() => {
-      console.log.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
+      console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
     })
     .catch(() => {
-      console.log.failure(`❌ Rejected promise ${position} in ${delay}ms`);
+      console.log(`❌ Rejected promise ${position} in ${delay}ms`);
     }),
     delay = delay + + step. value)
     }

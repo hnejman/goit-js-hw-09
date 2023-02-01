@@ -8,6 +8,8 @@ const hours = document.querySelector('[data-hours]');
 const days = document.querySelector('[data-days]');
 const btn = document.querySelector('[data-start]');
 
+console.log("jebać");
+
 const options = {
     enableTime: true,
     time_24hr: true,
@@ -18,7 +20,7 @@ const options = {
     },
   };
 
-let pickr = flatpickr('[id="datetime-picker"]', options);
+let pickr = new flatpickr('[id="datetime-picker"]', options);
 
 function setTime(comparator, seconds, minutes, hours, days, selector){
   let date = new Date();

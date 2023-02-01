@@ -3,7 +3,7 @@ const firstStep = document.querySelector(`[name="delay"]`);
 const step = document.querySelector(`[name="step"]`);
 const amount = document.querySelector(`[name="amount"]`);
 const form = document.querySelector(`.form`);
-    let del;
+let del;
 
 function createPromise(count, del) {
   setTimeout(()=>{

@@ -4,6 +4,7 @@ const step = document.querySelector(`[name="step"]`);
 const amount = document.querySelector(`[name="amount"]`);
 const form = document.querySelector(`.form`);
 let del;
+let count;
 
 function createPromise(count, del) {
   setTimeout(()=>{

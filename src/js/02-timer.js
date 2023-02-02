@@ -7,6 +7,7 @@ const minutes = document.querySelector('[data-minutes]');
 const hours = document.querySelector('[data-hours]');
 const days = document.querySelector('[data-days]');
 const btn = document.querySelector('[data-start]');
+const info = document.querySelector('[id="info"]');
 
 const options = {
     enableTime: true,
@@ -20,17 +21,18 @@ const options = {
 
 let pickr = new flatpickr('[id="datetime-picker"]', options);
 
-function setTime(comparator, seconds, minutes, hours, days, selector){
+function setTime(comparator, seconds, minutes, hours, days, info){
   let date = new Date();
   date = date.getTime();
-  if(comparator < date){
-    selector.lastChild.textContent = "chose date in the future";
-    reject();
+  console.log(comparator);
+  console.log(date);
+  if(comparator <= date){
+    info.textContent = "chose date in the future";
+    info.styles = "color: #ff6347"
   } else if(
     Math.floor(comparator/ 1000 ).toFixed(0) == Math.floor(date/ 1000 ).toFixed(0)
   ){
-    selector.lastChild.textContent = "cutdown is over";
-    reject();
+    info.textContent = "cutdown is over";
   }
   const result = comparator - date;
   seconds.textContent = Math.floor((result % 60000 )/ 1000 ).toFixed(0);
@@ -43,5 +45,5 @@ btn.addEventListener("click", e=>{
   let dataSet = pickr.selectedDates[0];
   dataSet = dataSet.getTime();
   console.log(dataSet);
-  setInterval(setTime, 1000, dataSet, seconds, minutes, hours, days, selector);
+  setInterval(setTime, 1000, dataSet, seconds, minutes, hours, days, info);
 })

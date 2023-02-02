@@ -33,12 +33,13 @@ function setTime(comparator, seconds, minutes, hours, days, info){
     Math.floor(comparator/ 1000 ).toFixed(0) == Math.floor(date/ 1000 ).toFixed(0)
   ){
     info.textContent = "cutdown is over";
-  }
+  } else {
   const result = comparator - date;
   seconds.textContent = Math.floor((result % 60000 )/ 1000 ).toFixed(0);
   minutes.textContent = Math.floor((result % 3600000 )/ 60000).toFixed(0);
   hours.textContent = Math.floor((result % 86400000) / 3600000).toFixed(0);
   days.textContent = Math.floor(result / 86400000).toFixed(0);
+  }
 }
 
 btn.addEventListener("click", e=>{

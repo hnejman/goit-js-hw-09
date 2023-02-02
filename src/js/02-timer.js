@@ -8,8 +8,6 @@ const hours = document.querySelector('[data-hours]');
 const days = document.querySelector('[data-days]');
 const btn = document.querySelector('[data-start]');
 
-console.log("jebać");
-
 const options = {
     enableTime: true,
     time_24hr: true,
